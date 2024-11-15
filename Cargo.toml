@@ -1,0 +1,16 @@
+[package]
+name = "recorded-tests"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+recorded-tests-macros = { version = "0.1.0", path = "recorded-tests-macros" }
+
+[workspace]
+resolver = "2"
+members = [
+    "recorded-tests-macros",
+]
+
+[workspace.lints]

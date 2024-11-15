@@ -1,0 +1,5 @@
+[build]
+rustflags = [
+    '--check-cfg',
+    'cfg(recorded, values(none(), "record", "playback", "live"))',
+]
