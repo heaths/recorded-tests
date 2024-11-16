@@ -7,10 +7,14 @@ publish = false
 [dependencies]
 recorded-tests-macros = { version = "0.1.0", path = "recorded-tests-macros" }
 
+[dev-dependencies]
+tokio.workspace = true
+
 [workspace]
 resolver = "2"
 members = [
     "recorded-tests-macros",
 ]
 
-[workspace.lints]
+[workspace.dependencies]
+tokio = { version = "1.41.1", features = ["macros", "rt"] }

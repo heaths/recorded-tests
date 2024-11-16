@@ -15,4 +15,17 @@ mod tests {
         let result = add(2, 2);
         assert_eq!(result, 4);
     }
+
+    #[recorded]
+    async fn it_works_async() {
+        let mut i = 0;
+        tokio::spawn(async move {
+            i = add(i, 1);
+            assert_eq!(i, 1);
+        })
+        .await
+        .unwrap();
+
+        assert_eq!(i, 0);
+    }
 }
