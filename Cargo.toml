@@ -10,6 +10,9 @@ recorded-tests-macros = { version = "0.1.0", path = "recorded-tests-macros" }
 [dev-dependencies]
 tokio.workspace = true
 
+[lints]
+workspace = true
+
 [workspace]
 resolver = "2"
 members = [
@@ -18,3 +21,7 @@ members = [
 
 [workspace.dependencies]
 tokio = { version = "1.41.1", features = ["macros", "rt"] }
+
+[workspace.lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = ['cfg(test_mode, values("playback", "record", "live"))']

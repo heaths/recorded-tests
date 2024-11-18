@@ -16,6 +16,7 @@ mod tests {
         assert_eq!(result, 4);
     }
 
+    #[cfg(test_mode = "live")]
     #[recorded]
     async fn it_works_async() {
         let mut i = 0;

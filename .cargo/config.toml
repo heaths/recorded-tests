@@ -1,5 +1,5 @@
 [build]
 rustflags = [
     '--check-cfg',
-    'cfg(recorded, values(none(), "record", "playback", "live"))',
+    'cfg(test_mode, values("playback", "record", "live"))',
 ]
