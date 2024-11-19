@@ -13,9 +13,6 @@
         ]
       },
       "args": [],
-      "env": {
-        "CARGO_MANIFEST_DIR": "${workspaceFolder}"
-      },
       "cwd": "${workspaceFolder}"
     }
   ]

@@ -60,7 +60,7 @@ pub fn recorded(attr: TokenStream, item: TokenStream) -> TokenStream {
         let fn_name = &sig.ident;
         preamble = quote! {
             #[allow(unused_variables)]
-            let #pat = #ty::new(#test_mode, ::std::module_path!(), stringify!(#fn_name));
+            let #pat = #ty::new(#test_mode, ::std::module_path!(), ::std::file!(), stringify!(#fn_name));
         }
     }
 

@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See LICENSE.txt in the project root for license information.
 
 use std::{
-    env, fmt,
+    env, fmt, fs,
     path::{Path, PathBuf},
     str::FromStr,
 };
@@ -15,10 +15,25 @@ pub struct TestContext {
 }
 
 impl TestContext {
-    pub fn new(test_mode: TestMode, module_path: &'static str, test_name: &'static str) -> Self {
-        let mut recordings_dir =
-            PathBuf::from_str(&env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set"))
-                .unwrap();
+    pub fn new(
+        test_mode: TestMode,
+        module_path: &'static str,
+        file_path: &'static str,
+        test_name: &'static str,
+    ) -> Self {
+        let mut recordings_dir = env::var("CARGO_MANIFEST_DIR").map_or_else(
+            |_| {
+                let file_path = fs::canonicalize(PathBuf::from_str(file_path).unwrap()).unwrap();
+                for ancestor in file_path.ancestors() {
+                    if ancestor.join("Cargo.toml").exists() {
+                        return ancestor.to_path_buf();
+                    }
+                }
+
+                panic!("expected cargo manifest directory");
+            },
+            |v| PathBuf::from_str(v.as_str()).unwrap(),
+        );
         module_path
             .split("::")
             .skip(1)
