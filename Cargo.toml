@@ -5,6 +5,7 @@ edition = "2021"
 publish = false
 
 [dependencies]
+recorded-tests-core.workspace = true
 recorded-tests-macros = { version = "0.1.0", path = "recorded-tests-macros" }
 
 [dev-dependencies]
@@ -16,10 +17,12 @@ workspace = true
 [workspace]
 resolver = "2"
 members = [
+    "recorded-tests-core",
     "recorded-tests-macros",
 ]
 
 [workspace.dependencies]
+recorded-tests-core = { version = "0.1.0", path = "recorded-tests-core" }
 tokio = { version = "1.41.1", features = ["macros", "rt"] }
 
 [workspace.lints.rust.unexpected_cfgs]

@@ -8,6 +8,7 @@ pub fn add(left: u64, right: u64) -> u64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use recorded_tests_core::{TestContext, TestMode};
     use recorded_tests_macros::recorded;
 
     #[recorded]
@@ -16,9 +17,11 @@ mod tests {
         assert_eq!(result, 4);
     }
 
-    #[cfg(test_mode = "live")]
-    #[recorded]
-    async fn it_works_async() {
+    #[recorded(live)]
+    async fn it_works_async(ctx: TestContext) {
+        assert_eq!(ctx.test_mode(), TestMode::Live);
+        assert_eq!(ctx.test_name(), "it_works_async");
+
         let mut i = 0;
         tokio::spawn(async move {
             i = add(i, 1);

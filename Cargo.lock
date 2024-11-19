@@ -102,9 +102,14 @@ dependencies = [
 name = "recorded-tests"
 version = "0.1.0"
 dependencies = [
+ "recorded-tests-core",
  "recorded-tests-macros",
  "tokio",
 ]
+
+[[package]]
+name = "recorded-tests-core"
+version = "0.1.0"
 
 [[package]]
 name = "recorded-tests-macros"
@@ -112,6 +117,7 @@ version = "0.1.0"
 dependencies = [
  "proc-macro2",
  "quote",
+ "recorded-tests-core",
  "syn",
  "tokio",
 ]
